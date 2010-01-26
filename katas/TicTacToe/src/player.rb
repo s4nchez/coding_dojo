@@ -13,8 +13,7 @@ class Player
   end
   
   def take_field(field)
-    @ticTacToe.fields.delete(field)
-    @fields << field
+    @fields <<  @ticTacToe.fields.delete(field)
     
     @row_taken = (@fields & ["11","12","13"]).length == 3 \
                    ||  (@fields & ["21","22","23"]).length == 3 \
