@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Game of Life</title>
+    <script type="text/javascript" src="src/Life.js"></script>
+
+    <!-- include spec files here... -->
+
+</head>
+<body>
+
+<script type="text/javascript">
+
+    var initialStrategy = function() {
+        return Math.random() * 10 < 1;
+    };
+
+    var grid = life.createGrid(initialStrategy, 10);
+    //while(true){
+    grid.tick(function(cell, row, col) {
+        var neighbours = grid.neighbours(row, col);
+        return life.nextStep(cell, neighbours);
+    });
+    
+    //}
+</script>
+
+</body>
+</html>
