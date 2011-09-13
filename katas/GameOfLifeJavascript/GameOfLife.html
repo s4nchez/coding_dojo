@@ -3,28 +3,17 @@
 <html>
 <head>
     <title>Game of Life</title>
+    <link rel="stylesheet" type="text/css" href="css/gameOfLife.css">
+    <script type="text/javascript" src="lib/underscore-min.js"></script>
+    <script type="text/javascript" src="lib/backbone-min.js"></script>
+    <script type="text/javascript" src="lib/jquery.min.js"></script>
     <script type="text/javascript" src="src/Life.js"></script>
-
-    <!-- include spec files here... -->
-
 </head>
 <body>
-
-<script type="text/javascript">
-
-    var initialStrategy = function() {
-        return Math.random() * 10 < 1;
-    };
-
-    var grid = life.createGrid(initialStrategy, 10);
-    //while(true){
-    grid.tick(function(cell, row, col) {
-        var neighbours = grid.neighbours(row, col);
-        return life.nextStep(cell, neighbours);
-    });
-    
-    //}
-</script>
-
+<table id="gameOfLive">
+    <tr><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td></tr>
+</table>
 </body>
 </html>

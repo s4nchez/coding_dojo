@@ -4,6 +4,9 @@
 <head>
   <title>Jasmine Test Runner</title>
   <link rel="stylesheet" type="text/css" href="lib/jasmine-1.0.2/jasmine.css">
+  <script type="text/javascript" src="lib/underscore-min.js"></script>
+  <script type="text/javascript" src="lib/backbone-min.js"></script>
+  <script type="text/javascript" src="lib/jquery.min.js"></script>
   <script type="text/javascript" src="lib/jasmine-1.0.2/jasmine.js"></script>
   <script type="text/javascript" src="lib/jasmine-1.0.2/jasmine-html.js"></script>
 
@@ -15,6 +18,13 @@
 
 </head>
 <body>
+
+<table id="testGameOfLife">
+    <tr><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td class="live"></td></tr>
+</table>
 
 <script type="text/javascript">
   jasmine.getEnv().addReporter(new jasmine.TrivialReporter());

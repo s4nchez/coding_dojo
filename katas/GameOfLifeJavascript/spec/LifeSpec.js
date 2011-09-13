@@ -26,7 +26,6 @@ describe("Game Of Life", function() {
             expect(grid.neighbours(1, 1)).toEqual(8);
         });
 
-
         it("should find live neighbours of cell - ignores itself", function() {
             var grid = life.createGrid(deadInitialState);
             grid.updateCell(0, 0, livingCell);
@@ -34,13 +33,14 @@ describe("Game Of Life", function() {
             expect(grid.neighbours(1, 1)).toEqual(1);
         });
 
-        it("should allow visiting all cells", function() {
-            var grid = life.createGrid(deadInitialState);
-            grid.tick(function(cell) {
-                return !cell;
-            });
-            expect(grid.neighbours(1, 1)).toEqual(8);
-        });
+        it("should get neighbours and calculate next result", function() {
+            var grid = life.createGrid(deadInitialState),
+            eventSpy = jasmine.createSpy();
+            grid.updateCell(1, 1, livingCell);
+            grid.bind("cellChanged", eventSpy);
+            grid.tick();
+            expect(eventSpy).toHaveBeenCalled();
+        })
     });
 
     describe("Cell", function() {
@@ -87,4 +87,18 @@ describe("Game Of Life", function() {
         });
     });
 
+    describe("Game of Life widget", function(){
+        it("should change class of particular cell", function(){
+            var eventSource = {};
+            _.extend(eventSource, Backbone.Events);
+            jQuery("#testGameOfLife").gameOfLifeWidget(eventSource);
+
+            eventSource.trigger("cellChanged", 1, 1, true);
+            expect(jQuery("#testGameOfLife tr:eq(1) td:eq(1)").hasClass("live")).toBeTruthy();
+
+            eventSource.trigger("cellChanged", 2, 2, false);
+
+            expect(jQuery("#testGameOfLife tr:eq(2) td:eq(2)").hasClass("live")).toBeFalsy();
+        })
+    });
 });
